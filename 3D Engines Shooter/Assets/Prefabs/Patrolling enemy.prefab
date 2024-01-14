@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 4626859513463679300}
   - component: {fileID: 7217576037056784856}
   - component: {fileID: 4269147682336303256}
+  - component: {fileID: 1920021568811404860}
   m_Layer: 0
   m_Name: Patrolling enemy
   m_TagString: Untagged
@@ -237,3 +238,15 @@ PlayableDirector:
   m_SceneBindings: []
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1920021568811404860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504019710512611847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fbdd67408e0704f89a4fc54e288857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
