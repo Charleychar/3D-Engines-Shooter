@@ -710,6 +710,11 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!4 &480817201 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7441653132327324321, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
+  m_PrefabInstance: {fileID: 1606638255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &878941616
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +826,7 @@ PrefabInstance:
     - target: {fileID: 7282583070464834508, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
       propertyPath: playerTarget
       value: 
-      objectReference: {fileID: 393713365}
+      objectReference: {fileID: 480817201}
     - target: {fileID: 7441653132327324321, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1389,6 +1394,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!4 &2144233011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1635061792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &350000736237461469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1457,10 +1467,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Regular Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2068777741236563978, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7282583070464834508, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
       propertyPath: playerTarget
       value: 
-      objectReference: {fileID: 393713365}
+      objectReference: {fileID: 2144233011}
     - target: {fileID: 7441653132327324321, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1505,5 +1519,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8599288090149283083, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 32d5f79df78c2e84eab47bb858bd0d73, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78318f09fd9e7fe4eb8356cc9f6318ac, type: 3}

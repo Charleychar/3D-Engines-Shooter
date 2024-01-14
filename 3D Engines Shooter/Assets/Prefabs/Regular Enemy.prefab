@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4067865456951211813}
   - component: {fileID: 2068777741236563978}
   - component: {fileID: 7282583070464834508}
+  - component: {fileID: 8599288090149283083}
   m_Layer: 0
   m_Name: Regular Enemy
   m_TagString: Untagged
@@ -135,6 +136,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa00fa1a28d1204bb4da3af94cff659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aggroRange: 5
+  turnSpeed: 3
+  playerTarget: {fileID: 0}
+--- !u!95 &8599288090149283083
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491138128898680011}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7439550147651170360
 GameObject:
   m_ObjectHideFlags: 0
