@@ -28,17 +28,12 @@ public class RegularEnemyAI : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    //public static bool Raycast(Vector3 gameObject, Vector3 forwards, float aggroRange);
-    
-    
-    
-    
-    
-    
-    
-    // Update is called once per frame
+
+    //checking if player is in range
     void Update()
     {
+        Raycasting();
+
         if (playerTarget != null)
         {
             distanceToPlayer = Vector3.Distance(playerTarget.position, transform.position);
@@ -55,6 +50,15 @@ public class RegularEnemyAI : MonoBehaviour
         }
     }
 
+
+    private void Raycasting()
+    {
+        RaycastHit enemyLineOfSight;
+        Debug.DrawRay(transform.position, gameObject.transform.forward, Color.green);
+        
+    }
+    
+    //engaging player
     private void EngagePlayer()
     {
         FacePlayer();
@@ -85,7 +89,7 @@ public class RegularEnemyAI : MonoBehaviour
 
     private void FacePlayer()
     {
-        
+        Vector3 direction = playerTarget.position;
     }
 
     private void OnDrawGizmosSelected()

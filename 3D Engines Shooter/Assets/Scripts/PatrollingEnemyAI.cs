@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrollingEnemyAI : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class PatrollingEnemyAI : MonoBehaviour
     //references
     [SerializeField] Transform playerTarget;
     Animator anim;
-
-
+    NavMeshAgent nMA;
+    
 
 
     // Start is called before the first frame update
