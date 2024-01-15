@@ -7,14 +7,15 @@ using UnityEngine.AI;
 public class RegularEnemyAI : MonoBehaviour
 {
     //parameters
-    [SerializeField] float aggroRange = 5f;
+    [SerializeField] float aggroRange = 10f;
     float distanceToPlayer = Mathf.Infinity;
-    [SerializeField] float turnSpeed = 3f;
+    [SerializeField] float turnSpeed = 7f;
 
     //references
     [SerializeField] Transform playerTarget;
     NavMeshAgent nMA;
     Animator anim;
+    Vector3 startPos;
 
     //states
     bool Aggro = false;
@@ -26,6 +27,7 @@ public class RegularEnemyAI : MonoBehaviour
     {
         nMA = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        startPos = transform.position; 
     }
 
 
@@ -47,6 +49,11 @@ public class RegularEnemyAI : MonoBehaviour
         else if (distanceToPlayer <= aggroRange)
         {
             Aggro = true;
+        }
+
+        if (distanceToPlayer > aggroRange)
+        {
+            Aggro = false;
         }
     }
 
@@ -72,6 +79,8 @@ public class RegularEnemyAI : MonoBehaviour
         {
             AttackPlayer();
         }
+
+        
     }
 
     private void AttackPlayer()
@@ -81,9 +90,15 @@ public class RegularEnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        anim.SetTrigger("playerSpotted");
+        anim.SetBool("playerSpotted",true);
         anim.SetBool("attackingPlayer", false);
         nMA.SetDestination(playerTarget.position);
+
+        if (distanceToPlayer > aggroRange)
+        {
+            anim.SetBool("playerSpotted", false);
+            nMA.SetDestination(startPos);
+        }
 
     }
 
