@@ -111,7 +111,8 @@ GameObject:
   - component: {fileID: 4626859513463679300}
   - component: {fileID: 7217576037056784856}
   - component: {fileID: 4269147682336303256}
-  - component: {fileID: 2386333745048004932}
+  - component: {fileID: 5340139995084067118}
+  - component: {fileID: 7350976044764374762}
   m_Layer: 0
   m_Name: Patrolling enemy
   m_TagString: Untagged
@@ -228,7 +229,7 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504019710512611847}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 2b2b96e9cf842254b929377f6ac111f5, type: 2}
   m_InitialState: 1
@@ -240,7 +241,27 @@ PlayableDirector:
     value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
---- !u!114 &2386333745048004932
+--- !u!95 &5340139995084067118
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504019710512611847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5673e532522fa7543bdcdfc89b5886a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7350976044764374762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,6 +270,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2504019710512611847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698a82610589b2c448e9e46021149906, type: 3}
+  m_Script: {fileID: 11500000, guid: c4fbdd67408e0704f89a4fc54e288857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aggroRange: 7
+  turnSpeed: 3
+  playerTarget: {fileID: 0}
