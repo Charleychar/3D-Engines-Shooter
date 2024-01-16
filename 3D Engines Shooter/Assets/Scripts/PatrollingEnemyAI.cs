@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 
 public class PatrollingEnemyAI : MonoBehaviour
 {
     //parameters
     [SerializeField] float aggroRange = 5f;
     float distanceToPlayer = Mathf.Infinity;
-    [SerializeField] float turnSpeed = 7f;
 
     //references
     [SerializeField] Transform playerTarget;
@@ -17,6 +17,8 @@ public class PatrollingEnemyAI : MonoBehaviour
     NavMeshAgent nMA;
     Vector3 startPos;
     Light aggroLight;
+    PlayableDirector director;
+    
     
 
     //states
@@ -30,6 +32,7 @@ public class PatrollingEnemyAI : MonoBehaviour
         nMA = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         aggroLight = GetComponent<Light>();
+        director = GetComponent<PlayableDirector>();
     }
 
     // Update is called once per frame
@@ -68,7 +71,7 @@ public class PatrollingEnemyAI : MonoBehaviour
 
     }
 
-    //engaging player
+    //attacking player if they step into light
     private void AttackPlayer()
     {
 

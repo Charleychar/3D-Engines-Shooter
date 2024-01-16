@@ -27,14 +27,14 @@ public class RegularEnemyAI : MonoBehaviour
     {
         nMA = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        startPos = transform.position; 
+        startPos = transform.position;
+        GetComponent<RegularEnemyHealth>();
     }
 
 
     //checking if player is in range
-    void Update()
+    public void Update()
     {
-        Raycasting();
 
         if (playerTarget != null)
         {
@@ -51,19 +51,10 @@ public class RegularEnemyAI : MonoBehaviour
             Aggro = true;
         }
 
-        if (distanceToPlayer > aggroRange)
-        {
-            Aggro = false;
-        }
+
+        //if ()
     }
 
-
-    private void Raycasting()
-    {
-        RaycastHit enemyLineOfSight;
-        Debug.DrawRay(transform.position, gameObject.transform.forward, Color.green);
-        
-    }
     
     //engaging player
     private void EngagePlayer()
@@ -83,6 +74,7 @@ public class RegularEnemyAI : MonoBehaviour
         
     }
 
+    //animations
     private void AttackPlayer()
     {
         anim.SetBool("attackingPlayer", true);
