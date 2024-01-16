@@ -21,8 +21,10 @@ public class RegularEnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         hP -= damage;
-        print("doing damage");
+        //GetComponent<RegularEnemyAI>().EngagePlayer();
 
+
+        print("doing damage");
         if(hP <= 0)
         {
             Destroy(gameObject);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Camera playerCam;
-    [SerializeField] float firingRange = 15f;
+    [SerializeField] float firingRange = 40f;
     [SerializeField] ParticleSystem gunFiringParticle;
     [SerializeField] GameObject hitVFX;
     [SerializeField] float damage = 10f;

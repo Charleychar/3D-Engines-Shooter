@@ -50,14 +50,11 @@ public class RegularEnemyAI : MonoBehaviour
         {
             Aggro = true;
         }
-
-
-        //if ()
     }
 
     
     //engaging player
-    private void EngagePlayer()
+    public void EngagePlayer()
     {
         FacePlayer();
 
