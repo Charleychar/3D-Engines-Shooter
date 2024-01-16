@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Playables;
 
 public class PatrollingEnemyAI : MonoBehaviour
 {
     //parameters
-    [SerializeField] float aggroRange = 7f;
+    [SerializeField] float aggroRange = 5f;
     float distanceToPlayer = Mathf.Infinity;
     [SerializeField] float turnSpeed = 7f;
 
@@ -17,7 +16,8 @@ public class PatrollingEnemyAI : MonoBehaviour
     Animator anim;
     NavMeshAgent nMA;
     Vector3 startPos;
-    PlayableDirector dir;
+    Light aggroLight;
+    
 
     //states
     bool Aggro = false;
@@ -29,8 +29,7 @@ public class PatrollingEnemyAI : MonoBehaviour
     {
         nMA = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        dir = GetComponent<PlayableDirector>();
-        startPos = transform.position;
+        aggroLight = GetComponent<Light>();
     }
 
     // Update is called once per frame
@@ -45,7 +44,7 @@ public class PatrollingEnemyAI : MonoBehaviour
 
         if (Aggro)
         {
-            EngagePlayer();
+            AttackPlayer();
             
         }
 
@@ -57,7 +56,6 @@ public class PatrollingEnemyAI : MonoBehaviour
         if (distanceToPlayer > aggroRange)
         {
             Aggro = false;
-            ReturnToPatrol();
         }
     }
 
@@ -71,39 +69,22 @@ public class PatrollingEnemyAI : MonoBehaviour
     }
 
     //engaging player
-    private void EngagePlayer()
+    private void AttackPlayer()
     {
-        FacePlayer();
-        dir.enabled = false;
-        print("working");
 
-        if (distanceToPlayer > nMA.stoppingDistance)
+        if (distanceToPlayer <= aggroRange)
         {
-            //ChasePlayer();
-        }
-
-        else if (distanceToPlayer <= nMA.stoppingDistance)
-        {
-            //AttackPlayer();
+            aggroLight.color = Color.red;
         }
         
     }
 
-    void ReturnToPatrol()
-    {
-        if (distanceToPlayer > aggroRange)
-        {
-            dir.enabled = true;
-        }
-    }
+    
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, aggroRange);
     }
 
-    void FacePlayer()
-    {
-        Vector3 direction = playerTarget.position;
-    }
+    
 }
