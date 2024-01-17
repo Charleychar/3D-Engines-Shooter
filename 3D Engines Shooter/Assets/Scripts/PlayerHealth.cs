@@ -9,12 +9,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDamage(float attackDamage)
     {
-        playerHP -= attackDamage;
 
         print("taking damage");
+        playerHP -= attackDamage;
+
+        
         if (playerHP <= 0)
         {
-            //(gameObject);
+            GetComponent<DeathHandler>().Death();
+            
         }
     }
 }

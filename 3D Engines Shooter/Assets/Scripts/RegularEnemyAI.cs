@@ -72,9 +72,10 @@ public class RegularEnemyAI : MonoBehaviour
     }
 
     //animations
-    private void AttackPlayer()
+    public void AttackPlayer()
     {
         anim.SetBool("attackingPlayer", true);
+        GetComponent<EnemyAttack>().Attack();
     }
 
     private void ChasePlayer()

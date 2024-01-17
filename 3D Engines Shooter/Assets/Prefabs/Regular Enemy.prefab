@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7072022263784312352}
   - component: {fileID: 4067865456951211813}
   - component: {fileID: 2068777741236563978}
-  - component: {fileID: 7282583070464834508}
   - component: {fileID: 8599288090149283083}
   - component: {fileID: 7213428904144168965}
+  - component: {fileID: 1087182101683416729}
   - component: {fileID: 3503864903800111189}
   - component: {fileID: 1016652107238958429}
   m_Layer: 0
@@ -127,21 +127,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7282583070464834508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491138128898680011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa00fa1a28d1204bb4da3af94cff659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aggroRange: 5
-  turnSpeed: 3
-  playerTarget: {fileID: 0}
 --- !u!95 &8599288090149283083
 Animator:
   serializedVersion: 4
@@ -224,6 +209,21 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1087182101683416729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491138128898680011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa00fa1a28d1204bb4da3af94cff659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroRange: 10
+  turnSpeed: 7
+  playerTarget: {fileID: 0}
 --- !u!114 &3503864903800111189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 20
+  playerTarget: {fileID: 0}
 --- !u!1 &7439550147651170360
 GameObject:
   m_ObjectHideFlags: 0

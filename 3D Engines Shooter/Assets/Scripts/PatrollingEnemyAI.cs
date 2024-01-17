@@ -60,13 +60,13 @@ public class PatrollingEnemyAI : MonoBehaviour
         }
     }
 
-
     //attacking player if they step into light
-    private void AttackPlayer()
+    public void AttackPlayer()
     {
         anim.enabled = false;
         aggroLight.color = Color.red;
         anim.SetBool("PlayerInRange", true);
+        //GetComponent<EnemyAttack>().Attack();
     }
 
 

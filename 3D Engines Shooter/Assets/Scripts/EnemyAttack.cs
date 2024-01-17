@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegularEnemyAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float attackDamage = 20f;
     [SerializeField] PlayerHealth playerTarget;
-    
+
     
     public void Attack()
     {
-        playerTarget.PlayerDamage(attackDamage);
+        print("attacking");
+        if (playerTarget == null)
+        {
+            return;
+        }
+        playerTarget.PlayerDamage(attackDamage);  
+        
     }
 }
