@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Playables;
 
 public class PatrollingEnemyAI : MonoBehaviour
 {
@@ -16,9 +15,8 @@ public class PatrollingEnemyAI : MonoBehaviour
     Animator anim;
     NavMeshAgent nMA;
     Vector3 startPos;
-    Light aggroLight;
-    PlayableDirector director;
-    
+    Light aggroLight; 
+
     
 
     //states
@@ -32,13 +30,12 @@ public class PatrollingEnemyAI : MonoBehaviour
         nMA = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         aggroLight = GetComponent<Light>();
-        director = GetComponent<PlayableDirector>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Raycasting();
 
         if (playerTarget != null)
         {
@@ -62,27 +59,15 @@ public class PatrollingEnemyAI : MonoBehaviour
         }
     }
 
-    
-
-    private void Raycasting()
-    {
-        RaycastHit enemyLineOfSight;
-        Debug.DrawRay(transform.position, gameObject.transform.forward, Color.green);
-
-    }
 
     //attacking player if they step into light
+
     private void AttackPlayer()
     {
-
-        if (distanceToPlayer <= aggroRange)
-        {
-            aggroLight.color = Color.red;
-        }
-        
+        aggroLight.color = Color.red;
     }
 
-    
+
 
     private void OnDrawGizmosSelected()
     {
