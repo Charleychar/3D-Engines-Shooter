@@ -110,11 +110,9 @@ GameObject:
   - component: {fileID: 6549486099836781460}
   - component: {fileID: 4626859513463679300}
   - component: {fileID: 7217576037056784856}
-  - component: {fileID: 4269147682336303256}
   - component: {fileID: 5340139995084067118}
-  - component: {fileID: 7350976044764374762}
   - component: {fileID: 5646013276526173005}
-  - component: {fileID: 3612633635696413486}
+  - component: {fileID: 1725903917461132779}
   m_Layer: 0
   m_Name: Patrolling enemy
   m_TagString: Untagged
@@ -224,27 +222,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!320 &4269147682336303256
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2504019710512611847}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 2b2b96e9cf842254b929377f6ac111f5, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -5191693758739796234, guid: 2b2b96e9cf842254b929377f6ac111f5, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 2443178947895814274, guid: 2b2b96e9cf842254b929377f6ac111f5, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References: []
 --- !u!95 &5340139995084067118
 Animator:
   serializedVersion: 4
@@ -265,20 +242,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7350976044764374762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2504019710512611847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fbdd67408e0704f89a4fc54e288857, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aggroRange: 5
-  playerTarget: {fileID: 0}
 --- !u!108 &5646013276526173005
 Light:
   m_ObjectHideFlags: 0
@@ -341,16 +304,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!135 &3612633635696413486
-SphereCollider:
+--- !u!114 &1725903917461132779
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504019710512611847}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0.00000011920929, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fbdd67408e0704f89a4fc54e288857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroRange: 5
+  playerTarget: {fileID: 0}

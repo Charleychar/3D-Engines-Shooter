@@ -14,8 +14,7 @@ public class PatrollingEnemyAI : MonoBehaviour
     [SerializeField] Transform playerTarget;
     Animator anim;
     NavMeshAgent nMA;
-    Vector3 startPos;
-    Light aggroLight; 
+    Light aggroLight;
 
     
 
@@ -44,8 +43,7 @@ public class PatrollingEnemyAI : MonoBehaviour
 
         if (Aggro)
         {
-            AttackPlayer();
-            
+            AttackPlayer();    
         }
 
         else if (distanceToPlayer <= aggroRange)
@@ -55,16 +53,20 @@ public class PatrollingEnemyAI : MonoBehaviour
 
         if (distanceToPlayer > aggroRange)
         {
+            anim.enabled = true;
             Aggro = false;
+            anim.SetBool("PlayerInRange", false);
+            aggroLight.color = Color.cyan;
         }
     }
 
 
     //attacking player if they step into light
-
     private void AttackPlayer()
     {
+        anim.enabled = false;
         aggroLight.color = Color.red;
+        anim.SetBool("PlayerInRange", true);
     }
 
 
