@@ -57,6 +57,7 @@ public class PatrollingEnemyAI : MonoBehaviour
             Aggro = false;
             anim.SetBool("PlayerInRange", false);
             aggroLight.color = Color.cyan;
+            CancelInvoke("KillPlayer");
         }
     }
 
@@ -66,7 +67,19 @@ public class PatrollingEnemyAI : MonoBehaviour
         anim.enabled = false;
         aggroLight.color = Color.red;
         anim.SetBool("PlayerInRange", true);
-        //GetComponent<EnemyAttack>().Attack();
+        Invoke("KillPlayer", 4);
+        
+    }
+
+    //if the player stays in the light for too long
+    public void KillPlayer()
+    {
+        if (playerTarget == null)
+        {
+            return;
+        }
+        print("killed player");
+        GameObject.Find("Player").GetComponent<DeathHandler>().Death();
     }
 
 

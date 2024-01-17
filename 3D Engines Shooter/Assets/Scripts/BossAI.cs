@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RegularEnemyAI : MonoBehaviour
+public class BossAI : MonoBehaviour
 {
     //parameters
     [SerializeField] float aggroRange = 10f;
@@ -14,11 +13,9 @@ public class RegularEnemyAI : MonoBehaviour
     [SerializeField] Transform playerTarget;
     NavMeshAgent nMA;
     Animator anim;
-    Vector3 startPos;
 
     //states
     bool Aggro = false;
-    
     
     
     // Start is called before the first frame update
@@ -26,15 +23,11 @@ public class RegularEnemyAI : MonoBehaviour
     {
         nMA = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        startPos = transform.position;
-        GetComponent<RegularEnemyHealth>();
     }
 
-
-    //checking if player is in range
-    public void Update()
+    // Update is called once per frame
+    void Update()
     {
-
         if (playerTarget != null)
         {
             distanceToPlayer = Vector3.Distance(playerTarget.position, transform.position);
@@ -42,7 +35,7 @@ public class RegularEnemyAI : MonoBehaviour
 
         if (Aggro)
         {
-            EngagePlayer();
+            EngagePlayer();      
         }
 
         else if (distanceToPlayer <= aggroRange)
@@ -51,7 +44,6 @@ public class RegularEnemyAI : MonoBehaviour
         }
     }
 
-    
     //engaging player
     public void EngagePlayer()
     {
@@ -65,28 +57,23 @@ public class RegularEnemyAI : MonoBehaviour
         else if (distanceToPlayer <= nMA.stoppingDistance)
         {
             AttackPlayer();
-        }    
+        }
+
     }
 
     //animations
     public void AttackPlayer()
     {
+        print("attacking");
         anim.SetBool("attackingPlayer", true);
         GetComponent<EnemyAttack>().Attack();
     }
 
     public void ChasePlayer()
     {
-        anim.SetBool("playerSpotted",true);
+        anim.SetBool("playerSpotted", true);
         anim.SetBool("attackingPlayer", false);
         nMA.SetDestination(playerTarget.position);
-
-        if (distanceToPlayer > aggroRange)
-        {
-            anim.SetBool("playerSpotted", false);
-            nMA.SetDestination(startPos);
-        }
-
     }
 
     public void FacePlayer()
