@@ -39,6 +39,10 @@ public class Weapon : MonoBehaviour
         {
             CreateHitVFX(hit);
             RegularEnemyHealth target = hit.transform.GetComponent<RegularEnemyHealth>();
+            if (target == null)
+            {
+                return;
+            }
             target.TakeDamage(damage);
         }
 
