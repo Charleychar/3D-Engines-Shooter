@@ -19,13 +19,18 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] BossHealth bossTarget;
 
+
+    public void OnEnable()
+    {
+        canFire = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject.Find("Regular Enemy").GetComponent<RegularEnemyHealth>();
         GameObject.Find("Boss").GetComponent<BossHealth>();
         Cursor.lockState = CursorLockMode.Locked;
-        //bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
     }
 
     // Update is called once per frame
@@ -51,7 +56,6 @@ public class Weapon : MonoBehaviour
     private void PlayGunFireVFX()
     {
         gunFiringParticle.Play();
-        //print("is shooting");
     }
 
     public IEnumerator Fire()
