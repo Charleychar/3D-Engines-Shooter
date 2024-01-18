@@ -14,12 +14,6 @@ public class EagleAnimation : MonoBehaviour
         StartAnimation();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartAnimation()
     {
         anim.Play("Idle");

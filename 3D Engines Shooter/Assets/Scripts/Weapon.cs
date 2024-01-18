@@ -11,14 +11,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitVFX;
     [SerializeField] float damage = 10f;
     [SerializeField] float rateOfFire = 0.5f;
+    
+    
     [SerializeField] RegularEnemyHealth regHealth;
     [SerializeField] BossHealth bossHealth;
+    [SerializeField] AmmoPickup ammo;
+    [SerializeField] BossHealth bossTarget;
+    [SerializeField] AmmoType ammoType;
 
     bool canFire = true;
-
-
-    [SerializeField] BossHealth bossTarget;
-
 
     public void OnEnable()
     {
@@ -36,12 +37,15 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
-        print(canFire);
+        if(GameObject.FindGameObjectWithTag("Boss") != null)
+        {
+            bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
+        }
+        //bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
+
         if (Input.GetMouseButtonDown(0) && canFire)
         {
-            StartCoroutine(Fire());
-            PlayGunFireVFX();
+            StartCoroutine(Fire());   
             
         }
 
@@ -61,7 +65,14 @@ public class Weapon : MonoBehaviour
     public IEnumerator Fire()
     {
         canFire = false;
-        Raycasting();
+
+        if (ammo.GetAmmoAmmount(ammoType) > 0)
+        {
+            Raycasting();
+            PlayGunFireVFX();
+            ammo.ReduceAmmo(ammoType);
+        }
+        
 
         yield return new WaitForSeconds(rateOfFire);
         canFire = true;
@@ -80,15 +91,30 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, firingRange))
         {
+            print("Raycasting");
             CreateHitVFX(hit);
-            RegularEnemyHealth target = hit.transform.GetComponent<RegularEnemyHealth>();
+            //RegularEnemyHealth target = hit.transform.GetComponent<RegularEnemyHealth>();
+            GameObject target = hit.transform.gameObject;
             //bossTarget = hit.transform.GetComponent<BossHealth>();
-            if (target == null)
+            //if (target == null)
+            //{
+            //    return;
+            //}
+            //target.GetComponent<RegularEnemyHealth>().TakeDamage(damage);
+            //bossTarget.TakeDamage(damage);
+            //target.GetComponent<BossHealth>().TakeDamage(damage);
+            if(target.GetComponent<RegularEnemyHealth>() != null)
+            {
+                target.GetComponent<RegularEnemyHealth>().TakeDamage(damage);
+            }
+            else if(target.GetComponent<BossHealth>() != null)
+            {
+                target.GetComponent<BossHealth>().TakeDamage(damage);
+            }
+            else
             {
                 return;
             }
-            target.TakeDamage(damage);
-            bossTarget.TakeDamage(damage);
         }
     }
 }

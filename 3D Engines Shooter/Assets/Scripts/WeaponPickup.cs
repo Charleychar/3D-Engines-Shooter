@@ -31,6 +31,7 @@ public class WeaponPickup : MonoBehaviour
     {
         gameObject.transform.parent = Weapons.transform;
         weaponSwitch.enabled = true;
+        GetComponent<Weapon>().enabled = true;
         PositionTransfer();
     }
 
