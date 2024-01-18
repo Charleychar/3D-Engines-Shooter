@@ -11,24 +11,33 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitVFX;
     [SerializeField] float damage = 10f;
     [SerializeField] float rateOfFire = 0.5f;
+    [SerializeField] RegularEnemyHealth regHealth;
+    [SerializeField] BossHealth bossHealth;
 
     bool canFire = true;
-    
-    
+
+
+    [SerializeField] BossHealth bossTarget;
+
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<RegularEnemyHealth>();
+        GameObject.Find("Regular Enemy").GetComponent<RegularEnemyHealth>();
+        GameObject.Find("Boss").GetComponent<BossHealth>();
         Cursor.lockState = CursorLockMode.Locked;
+        //bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
+        print(canFire);
         if (Input.GetMouseButtonDown(0) && canFire)
         {
             StartCoroutine(Fire());
             PlayGunFireVFX();
+            
         }
 
         if(this.gameObject.name == "SpecialPickup")
@@ -38,10 +47,11 @@ public class Weapon : MonoBehaviour
 
     }
 
+    //gunfire
     private void PlayGunFireVFX()
     {
         gunFiringParticle.Play();
-        print("is shooting");
+        //print("is shooting");
     }
 
     public IEnumerator Fire()
@@ -53,6 +63,8 @@ public class Weapon : MonoBehaviour
         canFire = true;
     }
 
+    
+    //raycasting
     private void CreateHitVFX(RaycastHit hit)
     {
         GameObject impact = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
@@ -66,11 +78,13 @@ public class Weapon : MonoBehaviour
         {
             CreateHitVFX(hit);
             RegularEnemyHealth target = hit.transform.GetComponent<RegularEnemyHealth>();
+            //bossTarget = hit.transform.GetComponent<BossHealth>();
             if (target == null)
             {
                 return;
             }
             target.TakeDamage(damage);
+            bossTarget.TakeDamage(damage);
         }
     }
 }

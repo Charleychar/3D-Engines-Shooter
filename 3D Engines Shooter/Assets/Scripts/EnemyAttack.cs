@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour
     
     public void Attack()
     {
-        print("attacking");
+        print("taking damage");
         if (playerTarget == null)
         {
             return;

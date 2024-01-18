@@ -38,6 +38,18 @@ public class WeaponSwitch : MonoBehaviour
             }
         }
 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            if (currentWeapon <= 1)
+            {
+                currentWeapon = 0;
+            }
+            else
+            {
+                currentWeapon--;
+            }
+        }
+
         
     }
 
