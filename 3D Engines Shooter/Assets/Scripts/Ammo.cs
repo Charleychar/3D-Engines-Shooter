@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class Ammo : MonoBehaviour
 {
     [SerializeField] AmmoSlot[] ammoSlots;
     
@@ -21,6 +21,11 @@ public class AmmoPickup : MonoBehaviour
     public void ReduceAmmo(AmmoType ammoType)
     {
         GetAmmoSlot(ammoType).ammoAmmount--;
+    }
+
+    public void IncreaseAmmo(AmmoType Rounds)
+    {
+        GetAmmoSlot(Rounds).ammoAmmount = 10;
     }
 
     private AmmoSlot GetAmmoSlot(AmmoType ammoType)

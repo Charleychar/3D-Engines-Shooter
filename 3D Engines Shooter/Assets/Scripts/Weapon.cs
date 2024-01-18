@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     
     [SerializeField] RegularEnemyHealth regHealth;
     [SerializeField] BossHealth bossHealth;
-    [SerializeField] AmmoPickup ammo;
+    [SerializeField] Ammo ammo;
     [SerializeField] BossHealth bossTarget;
     [SerializeField] AmmoType ammoType;
 

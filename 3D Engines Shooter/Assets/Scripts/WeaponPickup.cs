@@ -8,6 +8,8 @@ public class WeaponPickup : MonoBehaviour
     [SerializeField] GameObject Weapons;
     [SerializeField] WeaponSwitch weaponSwitch;
     [SerializeField] Transform newPos;
+    [SerializeField] Ammo maxRounds;
+    [SerializeField] AmmoType ammoType;
 
     Animator anim;
     Light pinkLight;
@@ -19,21 +21,17 @@ public class WeaponPickup : MonoBehaviour
         anim = GetComponent<Animator>();
         pinkLight = GetComponent<Light>();
         col = GetComponent<BoxCollider>();
+        maxRounds = GameObject.Find("Player").GetComponent<Ammo>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         gameObject.transform.parent = Weapons.transform;
         weaponSwitch.enabled = true;
-        GetComponent<Weapon>().enabled = true;
+        MaxOutRounds();
         PositionTransfer();
     }
+
 
     //to make sure the weapon gets added to player's arsenal properly
     private void PositionTransfer()
@@ -44,5 +42,13 @@ public class WeaponPickup : MonoBehaviour
         pinkLight.enabled = false;
         col.enabled = false;
         GetComponent<WeaponPickup>().enabled = false;
+    }
+
+    public void MaxOutRounds()
+    {
+        if (maxRounds.GetAmmoAmmount(ammoType) < 10)
+        {
+            maxRounds.IncreaseAmmo(ammoType);
+        }
     }
 }
