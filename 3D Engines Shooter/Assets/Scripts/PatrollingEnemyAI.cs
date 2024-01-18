@@ -62,8 +62,6 @@ public class PatrollingEnemyAI : MonoBehaviour
             Aggro = false;
             anim.SetBool("PlayerInRange", false);
             aggroLight.color = Color.cyan;
-            //GameObject.Find("Pistol").GetComponent<Weapon>().enabled = true;
-            //GameObject.Find("SpecialPickup").GetComponent<Weapon>().enabled = true;
             pistolWeapon.GetComponent<Weapon>().enabled = true;
             specialWeapon.GetComponent<Weapon>().enabled = true;
             CancelInvoke("KillPlayer");
@@ -76,8 +74,6 @@ public class PatrollingEnemyAI : MonoBehaviour
         anim.enabled = false;
         aggroLight.color = Color.red;
         anim.SetBool("PlayerInRange", true);
-        //GameObject.Find("Pistol").GetComponent<Weapon>().enabled = false;
-        //GameObject.Find("SpecialPickup").GetComponent<Weapon>().enabled = false;
         pistolWeapon.GetComponent<Weapon>().enabled = false;
         specialWeapon.GetComponent<Weapon>().enabled = false;
         Invoke("KillPlayer", 4);
