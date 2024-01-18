@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float attackDamage = 20f;
     [SerializeField] PlayerHealth playerTarget;
-
+    bool isAbleToAttack = true;
     
     public void Attack()
     {
@@ -15,7 +15,19 @@ public class EnemyAttack : MonoBehaviour
         {
             return;
         }
-        playerTarget.PlayerDamage(attackDamage);  
+        if (isAbleToAttack)
+        {
+            playerTarget.PlayerDamage(attackDamage);
+            isAbleToAttack = false;
+            Invoke("AbleToAttack", 1f);
+        }
+          
         
     }
+
+    void AbleToAttack()
+    {
+        isAbleToAttack = true;
+    }
+
 }

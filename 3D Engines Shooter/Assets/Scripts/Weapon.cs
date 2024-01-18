@@ -10,6 +10,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem gunFiringParticle;
     [SerializeField] GameObject hitVFX;
     [SerializeField] float damage = 10f;
+    [SerializeField] float rateOfFire = 0.5f;
+
+    bool canFire = true;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -21,19 +25,41 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canFire)
         {
-            Fire();
+            StartCoroutine(Fire());
             PlayGunFireVFX();
         }
+
+        if(this.gameObject.name == "SpecialPickup")
+        {
+            gunFiringParticle = transform.GetChild(1).GetComponent<ParticleSystem>();
+        }
+
     }
 
     private void PlayGunFireVFX()
     {
         gunFiringParticle.Play();
+        print("is shooting");
     }
 
-    public void Fire()
+    public IEnumerator Fire()
+    {
+        canFire = false;
+        Raycasting();
+
+        yield return new WaitForSeconds(rateOfFire);
+        canFire = true;
+    }
+
+    private void CreateHitVFX(RaycastHit hit)
+    {
+        GameObject impact = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
+        Destroy(impact, 0.1f);
+    }
+
+    public void Raycasting()
     {
         RaycastHit hit;
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, firingRange))
@@ -46,16 +72,5 @@ public class Weapon : MonoBehaviour
             }
             target.TakeDamage(damage);
         }
-
-        else
-        {
-            return;
-        } 
-    }
-
-    private void CreateHitVFX(RaycastHit hit)
-    {
-        GameObject impact = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
-        Destroy(impact, 0.1f);
     }
 }
