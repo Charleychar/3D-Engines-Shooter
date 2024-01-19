@@ -91,8 +91,6 @@ public class PatrollingEnemyAI : MonoBehaviour
         GameObject.Find("Player").GetComponent<DeathHandler>().Death();
     }
 
-
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, aggroRange);

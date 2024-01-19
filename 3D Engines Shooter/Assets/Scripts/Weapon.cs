@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
+    //parameters
     [SerializeField] Camera playerCam;
     [SerializeField] float firingRange = 20f;
     [SerializeField] ParticleSystem gunFiringParticle;
@@ -12,12 +14,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage = 10f;
     [SerializeField] float rateOfFire = 0.5f;
     
-    
+    //references
     [SerializeField] RegularEnemyHealth regHealth;
     [SerializeField] BossHealth bossHealth;
     [SerializeField] Ammo ammo;
     [SerializeField] BossHealth bossTarget;
     [SerializeField] AmmoType ammoType;
+    [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] GameObject weapons;
+    
 
     bool canFire = true;
 
@@ -35,13 +40,12 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(GameObject.FindGameObjectWithTag("Boss") != null)
         {
             bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
         }
-        //bossTarget = GameObject.FindGameObjectWithTag("Boss").transform.GetComponent<BossHealth>();
 
         if (Input.GetMouseButtonDown(0) && canFire)
         {
@@ -49,14 +53,21 @@ public class Weapon : MonoBehaviour
             
         }
 
-        if(this.gameObject.name == "SpecialPickup")
+        if (this.gameObject.name == "SpecialPickup")
         {
             gunFiringParticle = transform.GetChild(1).GetComponent<ParticleSystem>();
         }
-
+        DisplayAmmo();  
     }
 
-    //gunfire
+    
+
+    private void DisplayAmmo()
+    {
+        int currentAmmo = ammo.GetAmmoAmmount(ammoType);
+        ammoText.text = currentAmmo.ToString();
+    }
+
     private void PlayGunFireVFX()
     {
         gunFiringParticle.Play();
@@ -93,16 +104,7 @@ public class Weapon : MonoBehaviour
         {
             print("Raycasting");
             CreateHitVFX(hit);
-            //RegularEnemyHealth target = hit.transform.GetComponent<RegularEnemyHealth>();
             GameObject target = hit.transform.gameObject;
-            //bossTarget = hit.transform.GetComponent<BossHealth>();
-            //if (target == null)
-            //{
-            //    return;
-            //}
-            //target.GetComponent<RegularEnemyHealth>().TakeDamage(damage);
-            //bossTarget.TakeDamage(damage);
-            //target.GetComponent<BossHealth>().TakeDamage(damage);
             if(target.GetComponent<RegularEnemyHealth>() != null)
             {
                 target.GetComponent<RegularEnemyHealth>().TakeDamage(damage);

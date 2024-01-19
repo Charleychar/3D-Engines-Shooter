@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WeaponPickup : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class WeaponPickup : MonoBehaviour
     [SerializeField] GameObject Weapons;
     [SerializeField] WeaponSwitch weaponSwitch;
     [SerializeField] Transform newPos;
-    [SerializeField] Ammo maxRounds;
+    [SerializeField] Ammo ammoCount;
     [SerializeField] AmmoType ammoType;
+    [SerializeField] TextMeshProUGUI ammoText;
 
     Animator anim;
     Light pinkLight;
@@ -21,7 +23,7 @@ public class WeaponPickup : MonoBehaviour
         anim = GetComponent<Animator>();
         pinkLight = GetComponent<Light>();
         col = GetComponent<BoxCollider>();
-        maxRounds = GameObject.Find("Player").GetComponent<Ammo>();
+        ammoCount = GameObject.Find("Player").GetComponent<Ammo>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -44,11 +46,15 @@ public class WeaponPickup : MonoBehaviour
         GetComponent<WeaponPickup>().enabled = false;
     }
 
+    
+    //so that the player has the right amount of ammo for this gun when they pick it up
     public void MaxOutRounds()
     {
-        if (maxRounds.GetAmmoAmmount(ammoType) < 10)
+        if (ammoCount.GetAmmoAmmount(ammoType) < 10)
         {
-            maxRounds.IncreaseAmmo(ammoType);
+            ammoCount.IncreaseAmmo(ammoType);
         }
+        
     }
+    
 }
